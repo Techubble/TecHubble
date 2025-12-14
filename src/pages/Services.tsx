@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Brain, Smartphone, Zap, ShoppingCart, Code, Cpu, Database, Workflow } from 'lucide-react';
+import { Brain, Smartphone, Zap, ShoppingCart, Code, Cpu, Database, Workflow, ArrowRight, Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Services() {
   const services = [
@@ -14,7 +15,10 @@ export default function Services() {
         'ML Model Training',
         'Predictive Analytics',
         'Real-time CV Pipelines'
-      ]
+      ],
+      color: 'from-purple-500/20 to-primary-500/20',
+      iconColor: 'text-purple-400',
+      iconBg: 'bg-purple-500/10',
     },
     {
       icon: Code,
@@ -27,7 +31,10 @@ export default function Services() {
         'Analytics Dashboards',
         'User Management',
         'Integration APIs'
-      ]
+      ],
+      color: 'from-primary-500/20 to-blue-500/20',
+      iconColor: 'text-primary-400',
+      iconBg: 'bg-primary-500/10',
     },
     {
       icon: Smartphone,
@@ -40,7 +47,10 @@ export default function Services() {
         'Progressive Web Apps',
         'Real-time Features',
         'Cloud Integration'
-      ]
+      ],
+      color: 'from-cyan-500/20 to-teal-500/20',
+      iconColor: 'text-cyan-400',
+      iconBg: 'bg-cyan-500/10',
     },
     {
       icon: ShoppingCart,
@@ -53,7 +63,10 @@ export default function Services() {
         'Order Processing',
         'Analytics & Reporting',
         'Mobile Commerce'
-      ]
+      ],
+      color: 'from-accent-500/20 to-emerald-500/20',
+      iconColor: 'text-accent-400',
+      iconBg: 'bg-accent-500/10',
     },
     {
       icon: Zap,
@@ -66,7 +79,10 @@ export default function Services() {
         'Content Generation',
         'Task Scheduling',
         'System Integration'
-      ]
+      ],
+      color: 'from-amber-500/20 to-orange-500/20',
+      iconColor: 'text-amber-400',
+      iconBg: 'bg-amber-500/10',
     },
     {
       icon: Cpu,
@@ -79,7 +95,10 @@ export default function Services() {
         'Sensor Integration',
         'Real-time Processing',
         'Hardware Integration'
-      ]
+      ],
+      color: 'from-rose-500/20 to-pink-500/20',
+      iconColor: 'text-rose-400',
+      iconBg: 'bg-rose-500/10',
     },
     {
       icon: Database,
@@ -92,7 +111,10 @@ export default function Services() {
         'Statistical Analysis',
         'BI Dashboards',
         'Data Engineering'
-      ]
+      ],
+      color: 'from-violet-500/20 to-purple-500/20',
+      iconColor: 'text-violet-400',
+      iconBg: 'bg-violet-500/10',
     },
     {
       icon: Workflow,
@@ -105,7 +127,10 @@ export default function Services() {
         'Invoice Generation',
         'Subscription Management',
         'PCI Compliance'
-      ]
+      ],
+      color: 'from-blue-500/20 to-indigo-500/20',
+      iconColor: 'text-blue-400',
+      iconBg: 'bg-blue-500/10',
     }
   ];
 
@@ -128,25 +153,52 @@ export default function Services() {
     { name: 'Gemini AI', category: 'LLM' }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <div className="bg-black min-h-screen">
+    <div className="relative">
       {/* Hero Section */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-transparent" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h1
-            className="text-5xl md:text-6xl font-bold text-white mb-6"
+      <section className="relative pt-20 pb-16 md:pt-28 md:pb-20 overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0 bg-mesh" />
+        <div className="absolute inset-0 bg-glow-top" />
+
+        <div className="relative container-lg text-center">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8"
           >
-            Services & Expertise
-          </motion.h1>
-          <motion.p
-            className="text-xl text-gray-300 max-w-2xl mx-auto"
+            <Code size={14} className="text-primary-400" />
+            <span className="text-sm text-white/70">What We Build</span>
+          </motion.div>
+
+          <motion.h1
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            Services & <span className="text-gradient">Expertise</span>
+          </motion.h1>
+
+          <motion.p
+            className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             Comprehensive technology solutions tailored to your business needs
           </motion.p>
@@ -154,97 +206,130 @@ export default function Services() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <section className="section pt-0 relative">
+        <div className="container-lg">
+          <motion.div
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {services.map((service, i) => {
               const Icon = service.icon;
               return (
                 <motion.div
                   key={i}
-                  className="group p-8 rounded-xl bg-gradient-to-br from-gray-900/50 to-gray-900/20 border border-blue-500/20 hover:border-blue-500/50 transition-all"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: (i % 2) * 0.1 }}
-                  whileHover={{ y: -5 }}
+                  variants={itemVariants}
+                  className="group card card-hover p-8"
                 >
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0">
-                      <Icon className="w-10 h-10 text-blue-400" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
-                      <p className="text-gray-300 text-sm mb-4">{service.description}</p>
-                      <ul className="grid grid-cols-2 gap-2">
-                        {service.features.map((feature) => (
-                          <li key={feature} className="text-xs text-blue-300 flex items-center">
-                            <span className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
+                  {/* Gradient background on hover */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300`} />
+
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-5">
+                      {/* Icon */}
+                      <div className={`flex-shrink-0 w-12 h-12 rounded-xl ${service.iconBg} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                        <Icon className={`w-6 h-6 ${service.iconColor}`} />
+                      </div>
+
+                      {/* Content */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-primary-400 transition-colors duration-300">
+                          {service.title}
+                        </h3>
+                        <p className="text-white/50 text-sm mb-5 leading-relaxed">
+                          {service.description}
+                        </p>
+
+                        {/* Features grid */}
+                        <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+                          {service.features.map((feature) => (
+                            <li key={feature} className="flex items-center gap-2 text-sm text-white/60">
+                              <Check size={14} className="text-accent-400 flex-shrink-0" />
+                              <span className="truncate">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Technology Stack */}
-      <section className="py-20 relative border-t border-blue-500/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="section relative">
+        {/* Divider */}
+        <div className="section-divider mb-20" />
+
+        <div className="container-lg">
           <motion.div
-            className="text-center mb-16"
+            className="section-header"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-white mb-4">Technology Stack</h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-green-500 mx-auto" />
+            <h2 className="section-title">
+              Technology <span className="text-gradient">Stack</span>
+            </h2>
+            <p className="section-subtitle">
+              We use modern, battle-tested technologies
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <motion.div
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {technologies.map((tech, i) => (
               <motion.div
                 key={i}
-                className="p-4 rounded-lg bg-gradient-to-br from-blue-500/10 to-green-500/10 border border-blue-500/20 text-center"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: (i % 4) * 0.05 }}
-                whileHover={{ scale: 1.05 }}
+                variants={itemVariants}
+                className="group card card-hover p-4 text-center"
+                whileHover={{ scale: 1.02 }}
               >
-                <p className="text-white font-semibold text-sm">{tech.name}</p>
-                <p className="text-xs text-gray-400 mt-1">{tech.category}</p>
+                <p className="text-white font-medium text-sm mb-1 group-hover:text-primary-400 transition-colors duration-300">
+                  {tech.name}
+                </p>
+                <p className="text-xs text-white/40">{tech.category}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 relative border-t border-blue-500/20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="section relative">
+        <div className="container-md">
           <motion.div
+            className="card card-glass p-10 md:p-16 text-center gradient-border"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-white mb-6">Ready to Get Started?</h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Ready to Get <span className="text-gradient">Started</span>?
+            </h2>
+            <p className="text-white/60 text-lg mb-8 max-w-lg mx-auto">
               Let's discuss how we can help your business scale with intelligent technology solutions
             </p>
-            <motion.a
-              href="/contact"
-              className="inline-block px-8 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-lg font-semibold"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Start Your Project
-            </motion.a>
+            <Link to="/contact">
+              <motion.button
+                className="btn-primary inline-flex items-center gap-2"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span>Start Your Project</span>
+                <ArrowRight size={18} />
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
       </section>
