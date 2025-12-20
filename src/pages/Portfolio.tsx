@@ -7,53 +7,58 @@ export default function Portfolio() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const projects = [
-    // Automation & AI
+    // Top Tier (Startup & Scale)
     {
       id: 1,
-      title: 'AI-Powered YouTube Shorts Pipeline',
-      description: 'End-to-end automation system fetching Reddit videos, analyzing with Gemini AI, trimming, auto-titling and publishing as YouTube Shorts. Generates 50,000+ views every 48 hours.',
-      category: 'automation',
-      technologies: ['Python', 'Gemini AI', 'YouTube API', 'FFmpeg', 'PRAW'],
-      year: 2024,
-      gradient: 'from-amber-500/10 to-orange-500/10',
+      title: 'Moqah.pk',
+      description: 'Event discovery and ticketing platform allowing organizers to list events and customers to purchase tickets seamlessly.',
+      category: 'web-mobile',
+      technologies: ['Web App', 'Mobile Responsive', 'Payment Integration', 'Event Management', 'Full-Stack'],
+      year: 2022,
+      gradient: 'from-accent-500/10 to-teal-500/10',
+      image: 'moqah.jpeg', // Placeholder for later
     },
     {
       id: 2,
-      title: 'Heartbeat Sensor with AI Integration',
-      description: 'Real-time BPM monitoring system using ESP32 and IR sensors with Gemini API integration for AI-driven insights and interactive health analytics.',
-      category: 'iot',
-      technologies: ['ESP32', 'Arduino', 'React.js', 'Node.js', 'Gemini AI'],
-      year: 2024,
+      title: 'Karvaan',
+      description: 'SaaS platform for tour agencies managing operations, streamlining workflows, and improving operational efficiency.',
+      category: 'web-mobile',
+      technologies: ['Desktop App', 'SaaS', 'Operations Management', 'Full-Stack', 'Database'],
+      year: 2022,
       gradient: 'from-rose-500/10 to-pink-500/10',
+      image: 'karvaan.jpeg', // Placeholder for later
     },
     {
       id: 3,
-      title: 'NASA Space Apps - CO2 Heatmap',
-      description: 'Team project visualizing Seattle\'s CO2 emissions using environmental datasets, interactive heatmaps, and GPT-powered chatbot for climate insights.',
-      category: 'ai-ml',
-      technologies: ['Python', 'Streamlit', 'Folium', 'GPT', 'Pandas'],
-      year: 2023,
-      gradient: 'from-accent-500/10 to-teal-500/10',
+      title: 'SmartScout',
+      description: 'Mobile app connecting football players and scouts with features for player profiles, notifications, activity tracking, and subscriptions.',
+      category: 'web-mobile',
+      technologies: ['React Native', 'iOS', 'Android', 'Subscriptions', 'Real-time Updates'],
+      year: 2022,
+      gradient: 'from-primary-500/10 to-indigo-500/10',
+      image: 'smartscout.jpeg', // Placeholder for later
     },
 
-    // Computer Vision & Robotics
+    // High Complexity ML & AI
     {
       id: 4,
-      title: 'Real-time CCTV Processing System',
-      description: 'Multi-feed CCTV processing on Raspberry Pi 5 with YOLO-based face, person, and pose detection, action recognition, and multi-person face recognition pipeline.',
-      category: 'computer-vision',
-      technologies: ['Computer Vision', 'YOLO', 'Raspberry Pi 5', 'OpenCV', 'Face Recognition'],
-      year: 2024,
+      title: 'CNN-BiLSTM Intrusion Detection Model',
+      description: 'Advanced intrusion detection using CNN-BiLSTM with attention mechanisms, SHAP feature selection, and QNN final classifier.',
+      category: 'ai-ml',
+      technologies: ['TensorFlow', 'CNN', 'LSTM', 'SHAP', 'Attention Mechanisms', 'Deep Learning'],
+      year: 2023,
       gradient: 'from-primary-500/10 to-purple-500/10',
+      image: '', // Placeholder for later
     },
     {
       id: 5,
-      title: 'ESP32 Rover with Object Tracking',
-      description: 'Autonomous rover with real-time object tracking, visual feedback, and integrated chatbot for intelligent navigation and interaction.',
-      category: 'robotics',
-      technologies: ['ESP32', 'Computer Vision', 'Object Detection', 'Motor Control', 'LLM'],
-      year: 2024,
-      gradient: 'from-cyan-500/10 to-blue-500/10',
+      title: 'QNN Binary Classifier',
+      description: 'Quantum neural network binary classifier using Qiskit and PyTorch trained on 11GB dataset with hybrid quantum-classical approach.',
+      category: 'ai-ml',
+      technologies: ['Qiskit', 'PyTorch', 'Quantum Computing', 'Machine Learning', 'Large-scale Training'],
+      year: 2023,
+      gradient: 'from-violet-500/10 to-indigo-500/10',
+      image: '', // Placeholder for later
     },
     {
       id: 6,
@@ -63,9 +68,79 @@ export default function Portfolio() {
       technologies: ['ESP32', 'LLM', 'Edge Computing', 'Model Optimization', 'Distributed Systems'],
       year: 2024,
       gradient: 'from-violet-500/10 to-purple-500/10',
+      image: '', // Placeholder for later
     },
     {
       id: 7,
+      title: 'Agentic AI Airspace Copilot',
+      description: 'Realistic agentic AI system monitoring live flight traffic via OpenSky Network API with intelligent airspace management.',
+      category: 'ai-ml',
+      technologies: ['Agentic AI', 'OpenSky API', 'Real-time Data', 'LLM', 'Aviation'],
+      year: 2024,
+      gradient: 'from-cyan-500/10 to-blue-500/10',
+      image: '', // Placeholder for later
+    },
+    {
+      id: 8,
+      title: 'Real-time CCTV Processing System',
+      description: 'Multi-feed CCTV processing on Raspberry Pi 5 with YOLO-based face, person, and pose detection, action recognition, and multi-person face recognition pipeline.',
+      category: 'computer-vision',
+      technologies: ['Computer Vision', 'YOLO', 'Raspberry Pi 5', 'OpenCV', 'Face Recognition'],
+      year: 2024,
+      gradient: 'from-primary-500/10 to-purple-500/10',
+      image: '', // Placeholder for later
+    },
+    {
+      id: 9,
+      title: 'AI-Powered YouTube Shorts Pipeline',
+      description: 'End-to-end automation system fetching Reddit videos, analyzing with Gemini AI, trimming, auto-titling and publishing as YouTube Shorts. Generates 50,000+ views every 48 hours.',
+      category: 'automation',
+      technologies: ['Python', 'Gemini AI', 'YouTube API', 'FFmpeg', 'PRAW'],
+      year: 2024,
+      gradient: 'from-amber-500/10 to-orange-500/10',
+      image: '', // Placeholder for later
+    },
+    {
+      id: 10,
+      title: 'NASA Space Apps - CO2 Heatmap',
+      description: 'Team project visualizing Seattle\'s CO2 emissions using environmental datasets, interactive heatmaps, and GPT-powered chatbot for climate insights.',
+      category: 'ai-ml',
+      technologies: ['Python', 'Streamlit', 'Folium', 'GPT', 'Pandas'],
+      year: 2023,
+      gradient: 'from-accent-500/10 to-teal-500/10',
+      image: '', // Placeholder for later
+    },
+
+    // Automation & IoT
+    {
+      id: 11,
+      title: 'Heartbeat Sensor with AI Integration',
+      description: 'Real-time BPM monitoring system using ESP32 and IR sensors with Gemini API integration for AI-driven insights and interactive health analytics.',
+      category: 'iot',
+      technologies: ['ESP32', 'Arduino', 'React.js', 'Node.js', 'Gemini AI'],
+      year: 2024,
+      gradient: 'from-rose-500/10 to-pink-500/10',
+    },
+    {
+      id: 12,
+      title: 'Diagnostic Platform with AI',
+      description: 'Web-based diagnostic platform using GPT-4o for automated script generation, reducing manual scripting time by 40%.',
+      category: 'ai-ml',
+      technologies: ['GPT-4o', 'Python', 'Flask', 'React.js', 'Healthcare Tech'],
+      year: 2024,
+      gradient: 'from-accent-500/10 to-teal-500/10',
+    },
+    {
+      id: 13,
+      title: 'ESP32 Rover with Object Tracking',
+      description: 'Autonomous rover with real-time object tracking, visual feedback, and integrated chatbot for intelligent navigation and interaction.',
+      category: 'robotics',
+      technologies: ['ESP32', 'Computer Vision', 'Object Detection', 'Motor Control', 'LLM'],
+      year: 2024,
+      gradient: 'from-cyan-500/10 to-blue-500/10',
+    },
+    {
+      id: 14,
       title: 'Cricket Pitch Detection with OpenCV',
       description: 'Real-time cricket pitch detection using color and shape-based algorithms with player tracking and AR statistics integration.',
       category: 'computer-vision',
@@ -74,7 +149,7 @@ export default function Portfolio() {
       gradient: 'from-accent-500/10 to-emerald-500/10',
     },
     {
-      id: 8,
+      id: 15,
       title: 'Real-time Player Detection & AR Stats',
       description: 'KDD Lab project for detecting players in real-time and overlaying AR statistics during live cricket matches.',
       category: 'computer-vision',
@@ -82,10 +157,8 @@ export default function Portfolio() {
       year: 2023,
       gradient: 'from-blue-500/10 to-indigo-500/10',
     },
-
-    // AI & LLM Agents
     {
-      id: 9,
+      id: 16,
       title: 'Visualization Chatbot',
       description: 'Upload CSV files and generate interactive graphs and charts through natural language queries using Flask, Matplotlib, and Gemini AI.',
       category: 'ai-ml',
@@ -94,7 +167,7 @@ export default function Portfolio() {
       gradient: 'from-primary-500/10 to-blue-500/10',
     },
     {
-      id: 10,
+      id: 17,
       title: 'Jarvis Virtual Assistant',
       description: 'AI-powered virtual assistant with voice interaction, natural language understanding, and multi-function capabilities.',
       category: 'ai-ml',
@@ -103,7 +176,7 @@ export default function Portfolio() {
       gradient: 'from-purple-500/10 to-pink-500/10',
     },
     {
-      id: 11,
+      id: 18,
       title: 'AI Agent for Finance',
       description: 'Intelligent quant assistant analyzing financial data, providing market insights, and executing trading strategies with AI guidance.',
       category: 'ai-ml',
@@ -112,7 +185,7 @@ export default function Portfolio() {
       gradient: 'from-accent-500/10 to-cyan-500/10',
     },
     {
-      id: 12,
+      id: 19,
       title: 'SQL Chatbot with Oracle Integration',
       description: 'Natural language SQL generation and execution agent with seamless Oracle Database integration for intelligent data querying.',
       category: 'ai-ml',
@@ -121,7 +194,7 @@ export default function Portfolio() {
       gradient: 'from-amber-500/10 to-yellow-500/10',
     },
     {
-      id: 13,
+      id: 20,
       title: 'Camera Follow-Intent Agent',
       description: 'Intelligent agent detecting camera follow intent and automatically centering objects via motor control systems.',
       category: 'robotics',
@@ -132,7 +205,7 @@ export default function Portfolio() {
 
     // Trading & Finance
     {
-      id: 14,
+      id: 21,
       title: 'Crypto Scalping Bot',
       description: 'Algorithmic trading bot using Coinalyze API for real-time cryptocurrency analysis and automated scalping strategies.',
       category: 'trading',
@@ -141,7 +214,7 @@ export default function Portfolio() {
       gradient: 'from-accent-500/10 to-emerald-500/10',
     },
     {
-      id: 15,
+      id: 22,
       title: 'Multiple Algorithmic Trading Bots',
       description: 'Suite of trading bots implementing various strategies with portfolio management chatbot and real-time performance tracking.',
       category: 'trading',
@@ -150,7 +223,7 @@ export default function Portfolio() {
       gradient: 'from-blue-500/10 to-cyan-500/10',
     },
     {
-      id: 16,
+      id: 23,
       title: 'TradingView-like Live Terminal',
       description: 'Professional trading terminal built in Python with real-time market data visualization and technical analysis tools.',
       category: 'trading',
@@ -159,7 +232,7 @@ export default function Portfolio() {
       gradient: 'from-primary-500/10 to-violet-500/10',
     },
     {
-      id: 17,
+      id: 24,
       title: 'High/Low Breakout Bot',
       description: 'Advanced trading bot implementing high/low breakout strategies using ccxt library with Flask-based UI dashboard.',
       category: 'trading',
@@ -170,7 +243,7 @@ export default function Portfolio() {
 
     // Web & Mobile Development
     {
-      id: 18,
+      id: 25,
       title: 'React Native LLM Interface',
       description: 'Mobile app with integrated camera and microphone for capturing inputs and sending to LLM for intelligent responses.',
       category: 'web-mobile',
@@ -179,7 +252,7 @@ export default function Portfolio() {
       gradient: 'from-cyan-500/10 to-blue-500/10',
     },
     {
-      id: 19,
+      id: 26,
       title: 'Sorting Visualizer',
       description: 'Educational web frontend for visualizing sorting algorithms with Python backend implementation and step-by-step execution.',
       category: 'web-mobile',
@@ -187,57 +260,10 @@ export default function Portfolio() {
       year: 2023,
       gradient: 'from-violet-500/10 to-purple-500/10',
     },
-    {
-      id: 20,
-      title: 'Moqah.pk',
-      description: 'Event discovery and ticketing platform allowing organizers to list events and customers to purchase tickets seamlessly.',
-      category: 'web-mobile',
-      technologies: ['Web App', 'Mobile Responsive', 'Payment Integration', 'Event Management', 'Full-Stack'],
-      year: 2022,
-      gradient: 'from-accent-500/10 to-teal-500/10',
-    },
-    {
-      id: 21,
-      title: 'SmartScout',
-      description: 'Mobile app connecting football players and scouts with features for player profiles, notifications, activity tracking, and subscriptions.',
-      category: 'web-mobile',
-      technologies: ['React Native', 'iOS', 'Android', 'Subscriptions', 'Real-time Updates'],
-      year: 2022,
-      gradient: 'from-primary-500/10 to-indigo-500/10',
-    },
-    {
-      id: 22,
-      title: 'Karvaan',
-      description: 'SaaS platform for tour agencies managing operations, streamlining workflows, and improving operational efficiency.',
-      category: 'web-mobile',
-      technologies: ['Desktop App', 'SaaS', 'Operations Management', 'Full-Stack', 'Database'],
-      year: 2022,
-      gradient: 'from-rose-500/10 to-pink-500/10',
-    },
-
-    // Machine Learning
-    {
-      id: 23,
-      title: 'CNN-BiLSTM Intrusion Detection Model',
-      description: 'Advanced intrusion detection using CNN-BiLSTM with attention mechanisms, SHAP feature selection, and QNN final classifier.',
-      category: 'ai-ml',
-      technologies: ['TensorFlow', 'CNN', 'LSTM', 'SHAP', 'Attention Mechanisms', 'Deep Learning'],
-      year: 2023,
-      gradient: 'from-primary-500/10 to-purple-500/10',
-    },
-    {
-      id: 24,
-      title: 'QNN Binary Classifier',
-      description: 'Quantum neural network binary classifier using Qiskit and PyTorch trained on 11GB dataset with hybrid quantum-classical approach.',
-      category: 'ai-ml',
-      technologies: ['Qiskit', 'PyTorch', 'Quantum Computing', 'Machine Learning', 'Large-scale Training'],
-      year: 2023,
-      gradient: 'from-violet-500/10 to-indigo-500/10',
-    },
 
     // Games & Misc
     {
-      id: 25,
+      id: 27,
       title: 'Unity Multiplayer Fighting Game',
       description: 'Full-featured multiplayer platformer fighting game with physics, animations, networking, and competitive gameplay.',
       category: 'games',
@@ -246,7 +272,7 @@ export default function Portfolio() {
       gradient: 'from-amber-500/10 to-yellow-500/10',
     },
     {
-      id: 26,
+      id: 28,
       title: 'C++ Chess Game',
       description: 'Complete chess game implementation in C++ with AI opponent, move validation, and strategic gameplay.',
       category: 'games',
@@ -255,7 +281,7 @@ export default function Portfolio() {
       gradient: 'from-accent-500/10 to-emerald-500/10',
     },
     {
-      id: 27,
+      id: 29,
       title: 'Menagerie Game',
       description: 'Original game developed in C++ featuring unique gameplay mechanics and engaging user experience.',
       category: 'games',
@@ -264,33 +290,13 @@ export default function Portfolio() {
       gradient: 'from-blue-500/10 to-cyan-500/10',
     },
     {
-      id: 28,
+      id: 30,
       title: 'Cafe Management System',
       description: 'Object-oriented café management system demonstrating OOP principles, database management, and user interface design.',
       category: 'misc',
       technologies: ['OOP', 'Database', 'Management System', 'C++/Java', 'System Design'],
       year: 2022,
       gradient: 'from-rose-500/10 to-pink-500/10',
-    },
-
-    // Additional AI & ML Projects
-    {
-      id: 29,
-      title: 'Agentic AI Airspace Copilot',
-      description: 'Realistic agentic AI system monitoring live flight traffic via OpenSky Network API with intelligent airspace management.',
-      category: 'ai-ml',
-      technologies: ['Agentic AI', 'OpenSky API', 'Real-time Data', 'LLM', 'Aviation'],
-      year: 2024,
-      gradient: 'from-cyan-500/10 to-blue-500/10',
-    },
-    {
-      id: 30,
-      title: 'Diagnostic Platform with AI',
-      description: 'Web-based diagnostic platform using GPT-4o for automated script generation, reducing manual scripting time by 40%.',
-      category: 'ai-ml',
-      technologies: ['GPT-4o', 'Python', 'Flask', 'React.js', 'Healthcare Tech'],
-      year: 2024,
-      gradient: 'from-accent-500/10 to-teal-500/10',
     }
   ];
 
@@ -373,8 +379,8 @@ export default function Portfolio() {
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
                 className={`px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-200 ${activeCategory === category.id
-                    ? 'bg-primary-500 text-white shadow-glow-sm'
-                    : 'bg-white/[0.03] text-white/60 hover:text-white hover:bg-white/[0.06] border border-white/[0.06]'
+                  ? 'bg-primary-500 text-white shadow-glow-sm'
+                  : 'bg-white/[0.03] text-white/60 hover:text-white hover:bg-white/[0.06] border border-white/[0.06]'
                   }`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -416,7 +422,24 @@ export default function Portfolio() {
                   {/* Gradient background on hover */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300`} />
 
-                  <div className="relative z-10">
+                  <div className="relative z-10 flex flex-col h-full">
+                    {/* Project Image Placeholder/Showcase */}
+                    {(project.image !== undefined) && (
+                      <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-6 bg-white/[0.03] border border-white/[0.06] group-hover:border-primary-500/30 transition-colors duration-300">
+                        {project.image ? (
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                          />
+                        ) : (
+                          <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} flex items-center justify-center`}>
+                            <FolderOpen size={32} className="text-white/10 group-hover:text-primary-400/20 transition-colors duration-500" />
+                          </div>
+                        )}
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
+                      </div>
+                    )}
                     {/* Header */}
                     <div className="flex justify-between items-start mb-4">
                       <span className="badge">

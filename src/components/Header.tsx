@@ -29,8 +29,8 @@ export default function Header() {
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? 'bg-black/60 backdrop-blur-xl border-b border-white/[0.06] shadow-lg shadow-black/20'
-          : 'bg-transparent'
+        ? 'bg-black/60 backdrop-blur-xl border-b border-white/[0.06] shadow-lg shadow-black/20'
+        : 'bg-transparent'
         }`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -45,11 +45,11 @@ export default function Header() {
               whileHover={{ scale: 1.05, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="text-white font-bold text-lg">T</span>
+              <span className="text-white font-bold text-lg">H</span>
               <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
             <span className="text-lg font-semibold text-white">
-              Tech<span className="text-gradient">Hubble</span>
+              HuSa<span className="text-gradient">Ka</span>
             </span>
           </Link>
 
@@ -62,8 +62,8 @@ export default function Header() {
                 className="relative px-4 py-2 group"
               >
                 <span className={`text-sm font-medium transition-colors duration-200 ${isActive(item.path)
-                    ? 'text-white'
-                    : 'text-white/60 group-hover:text-white'
+                  ? 'text-white'
+                  : 'text-white/60 group-hover:text-white'
                   }`}>
                   {item.label}
                 </span>
@@ -163,8 +163,8 @@ export default function Header() {
                       to={item.path}
                       onClick={() => setIsOpen(false)}
                       className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${isActive(item.path)
-                          ? 'text-white bg-white/[0.05]'
-                          : 'text-white/60 hover:text-white hover:bg-white/[0.03]'
+                        ? 'text-white bg-white/[0.05]'
+                        : 'text-white/60 hover:text-white hover:bg-white/[0.03]'
                         }`}
                     >
                       {item.label}

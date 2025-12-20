@@ -21,16 +21,12 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: Mail, href: 'mailto:contact@techubble.com', label: 'Email' },
+    { icon: Mail, href: 'mailto:contact@husaka.com', label: 'Email' },
     { icon: Linkedin, href: '#', label: 'LinkedIn' },
     { icon: Github, href: '#', label: 'GitHub' },
   ];
 
-  const founders = [
-    { name: 'Sami', color: 'text-primary-400' },
-    { name: 'Kazim', color: 'text-primary-400' },
-    { name: 'Huzaifa', color: 'text-accent-400' },
-  ];
+
 
   return (
     <footer className="relative mt-20 border-t border-white/[0.06]">
@@ -51,10 +47,10 @@ export default function Footer() {
           >
             <Link to="/" className="inline-flex items-center gap-3 mb-6 group">
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
-                <span className="text-white font-bold text-lg">T</span>
+                <span className="text-white font-bold text-lg">H</span>
               </div>
               <span className="text-lg font-semibold text-white">
-                Tech<span className="text-gradient">Hubble</span>
+                HuSa<span className="text-gradient">Ka</span>
               </span>
             </Link>
             <p className="text-white/50 text-sm leading-relaxed mb-6 max-w-xs">
@@ -142,10 +138,10 @@ export default function Footer() {
               Get in Touch
             </h3>
             <a
-              href="mailto:contact@techubble.com"
+              href="mailto:contact@husaka.com"
               className="text-sm text-primary-400 hover:text-primary-300 transition-colors duration-200"
             >
-              contact@techubble.com
+              contact@husaka.com
             </a>
             <div className="mt-6">
               <Link to="/contact">
@@ -165,17 +161,10 @@ export default function Footer() {
         <div className="mt-16 pt-8 border-t border-white/[0.06]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-white/40 text-center md:text-left">
-              Founded by{' '}
-              {founders.map((founder, index) => (
-                <span key={founder.name}>
-                  <span className={`font-medium ${founder.color}`}>{founder.name}</span>
-                  {index < founders.length - 2 && ', '}
-                  {index === founders.length - 2 && ' & '}
-                </span>
-              ))}
+              Powered by <span className="text-primary-400 font-medium">TechHubble</span> and <span className="text-accent-400 font-medium">Khiviom</span>
             </p>
             <p className="text-sm text-white/40">
-              © {currentYear} TechHubble. All rights reserved.
+              © {currentYear} HuSaKa. All rights reserved.
             </p>
           </div>
         </div>

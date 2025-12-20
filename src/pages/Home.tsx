@@ -50,25 +50,25 @@ export default function Home() {
 
   const projects = [
     {
-      title: 'AI-Powered YouTube Shorts Pipeline',
-      description: 'Automation system that fetches, analyzes, and auto-publishes content generating 50K+ views every 48 hours',
-      tags: ['Python', 'Gemini AI', 'YouTube API'],
-      category: 'Automation',
-      gradient: 'from-primary-500/10 to-purple-500/10',
-    },
-    {
-      title: 'Real-time CCTV Processing System',
-      description: 'Multi-feed CCTV system on Raspberry Pi 5 with YOLO-based detection for faces, persons, and poses',
-      tags: ['Computer Vision', 'YOLO', 'Raspberry Pi'],
-      category: 'Computer Vision',
+      title: 'Moqah.pk',
+      description: 'Event discovery and ticketing platform allowing organizers to list events and customers to purchase tickets seamlessly.',
+      tags: ['Web App', 'Payment', 'Event Management'],
+      category: 'Web & Mobile',
       gradient: 'from-accent-500/10 to-teal-500/10',
     },
     {
-      title: 'Agentic AI Airspace Copilot',
-      description: 'Intelligent system monitoring live flight traffic using OpenSky Network API with agentic AI components',
-      tags: ['Agentic AI', 'APIs', 'Real-time Data'],
-      category: 'AI & ML',
-      gradient: 'from-cyan-500/10 to-blue-500/10',
+      title: 'Karvaan',
+      description: 'SaaS platform for tour agencies managing operations, streamlining workflows, and improving operational efficiency.',
+      tags: ['SaaS', 'Operations', 'Database'],
+      category: 'SaaS',
+      gradient: 'from-rose-500/10 to-pink-500/10',
+    },
+    {
+      title: 'SmartScout',
+      description: 'Mobile app connecting football players and scouts with real-time notifications and activity tracking.',
+      tags: ['React Native', 'Mobile', 'Sports Tech'],
+      category: 'Mobile App',
+      gradient: 'from-primary-500/10 to-indigo-500/10',
     }
   ];
 
@@ -133,7 +133,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Founded by Sami, Kazim, and Huzaifa — building intelligent products,
+            Powered by TechHubble and Khiviom — building intelligent products,
             automation systems, and high-performance software.
           </motion.p>
 
