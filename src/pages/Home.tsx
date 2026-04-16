@@ -1,377 +1,626 @@
-import { motion } from 'framer-motion';
-import { ArrowRight, Zap, BarChart3, Brain, Cpu, Shield, Rocket, Sparkles } from 'lucide-react';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Home() {
-  const features = [
-    {
-      icon: Zap,
-      title: 'Lightning Fast Development',
-      description: 'Agile and fast-paced approach to meet market demands efficiently',
-      color: 'from-amber-500/20 to-orange-500/20',
-      iconColor: 'text-amber-400',
-    },
-    {
-      icon: Brain,
-      title: 'AI & ML Integration',
-      description: 'Professional data scientists leveraging AI for smarter solutions',
-      color: 'from-primary-500/20 to-purple-500/20',
-      iconColor: 'text-primary-400',
-    },
-    {
-      icon: BarChart3,
-      title: 'Scalable Solutions',
-      description: 'Expertise in delivering reliable solutions that grow with your business',
-      color: 'from-accent-500/20 to-teal-500/20',
-      iconColor: 'text-accent-400',
-    },
-    {
-      icon: Cpu,
-      title: 'Cutting-Edge Tech',
-      description: 'Built on the latest technologies and industry best practices',
-      color: 'from-cyan-500/20 to-blue-500/20',
-      iconColor: 'text-cyan-400',
-    },
-    {
-      icon: Shield,
-      title: 'Client Focused',
-      description: 'Tailored solutions designed to accelerate your growth and impact',
-      color: 'from-rose-500/20 to-pink-500/20',
-      iconColor: 'text-rose-400',
-    },
-    {
-      icon: Rocket,
-      title: 'Product Innovation',
-      description: 'Extensive experience building digital products for startups and enterprises',
-      color: 'from-violet-500/20 to-purple-500/20',
-      iconColor: 'text-violet-400',
-    }
-  ];
+/* ───── Animated section wrapper with slide-up reveal ───── */
+function FadeIn({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
-  const projects = [
-    {
-      title: 'Moqah.pk',
-      description: 'Event discovery and ticketing platform allowing organizers to list events and customers to purchase tickets seamlessly.',
-      tags: ['Web App', 'Payment', 'Event Management'],
-      category: 'Web & Mobile',
-      gradient: 'from-accent-500/10 to-teal-500/10',
-    },
-    {
-      title: 'Karvaan',
-      description: 'SaaS platform for tour agencies managing operations, streamlining workflows, and improving operational efficiency.',
-      tags: ['SaaS', 'Operations', 'Database'],
-      category: 'SaaS',
-      gradient: 'from-rose-500/10 to-pink-500/10',
-    },
-    {
-      title: 'SmartScout',
-      description: 'Mobile app connecting football players and scouts with real-time notifications and activity tracking.',
-      tags: ['React Native', 'Mobile', 'Sports Tech'],
-      category: 'Mobile App',
-      gradient: 'from-primary-500/10 to-indigo-500/10',
-    }
-  ];
+/* ───── Text reveal animation (word by word) ───── */
+function TextReveal({ text, className = '', delay = 0 }: { text: string; className?: string; delay?: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-60px' });
+  const words = text.split(' ');
+  return (
+    <span ref={ref} className={className}>
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          className="inline-block mr-[0.3em]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: delay + i * 0.06, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </span>
+  );
+}
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
+/* ───── Parallax text (moves slower than scroll) ───── */
+function ParallaxText({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  return (
+    <motion.div ref={ref} style={{ y }} className={className}>
+      {children}
+    </motion.div>
+  );
+}
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
+/* ───── Data ───── */
+const services = [
+  { num: '01', title: 'Digital Platforms', tags: ['Web Products', 'Customer Portals', 'Dashboards', 'SaaS'] },
+  { num: '02', title: 'AI & Automation', tags: ['Computer Vision', 'ML Pipelines', 'Agentic AI', 'Data Science'] },
+  { num: '03', title: 'Mobile & IoT', tags: ['React Native', 'Embedded Systems', 'ESP32', 'Real-time Apps'] },
+];
+
+const team = [
+  { role: 'Product', name: 'Sami', bio: 'Turns business ideas into clear product roadmaps and fast execution plans', initials: 'SA', color: '#f5c518', bg: '#f5c518' },
+  { role: 'Full-Stack', name: 'Kazim', bio: 'Builds scalable applications and leads technical architecture end-to-end', initials: 'KA', color: '#888', bg: '#d4d4d4' },
+  { role: 'AI & ML', name: 'Huzaifa', bio: 'Builds intelligent systems that automate workflows and amplify human potential', initials: 'HU', color: '#f5c518', bg: '#f5c518' },
+];
+
+const stats = [
+  { value: '30+', label: 'Products shipped' },
+  { value: '99%', label: 'Client retention' },
+  { value: '4×', label: 'Revenue uplift avg.' },
+  { value: '10d', label: 'First sprint live' },
+];
+
+const processSteps = [
+  { title: 'Insight Session', desc: 'We map your goals, users, and bottlenecks to define the right product direction.' },
+  { title: 'Blueprint & Scope', desc: 'You get a clear roadmap, delivery milestones, and transparent commercial plan.' },
+  { title: 'Sprint Delivery', desc: 'We ship in focused sprints with frequent demos and decision checkpoints.' },
+  { title: 'Launch & Scale', desc: 'After launch, we optimize performance, add features, and support growth.' },
+];
+
+const whyUs = [
+  { num: '01', title: 'Senior product thinking', desc: 'We solve business problems first, then engineer the simplest path to measurable impact.' },
+  { num: '02', title: 'Clear weekly momentum', desc: 'You receive visible progress every week, with priorities aligned to outcomes.' },
+  { num: '03', title: 'Built to scale cleanly', desc: 'We architect systems that are reliable today and ready for tomorrow\'s growth.' },
+  { num: '04', title: 'Long-term technical partner', desc: 'From roadmap to rollout, we stay with you to improve, optimize, and expand.' },
+];
+
+const pricing = [
+  { name: 'Launch', price: '$1,200', unit: '/project', desc: 'Ideal for validating one high-impact feature quickly.', features: ['One focused feature', '10-day delivery sprint', 'Two feedback rounds', '30-day stabilization support'], popular: false },
+  { name: 'Scale', price: '$3,800', unit: '/project', desc: 'Complete product build with workflow automation and analytics.', features: ['Core product architecture', 'Automation workflows included', '4 to 6 week delivery', 'Weekly sprint demos', '90-day growth support'], popular: true },
+  { name: 'Enterprise', price: 'Custom', unit: 'Scope', desc: 'For multi-team products, complex migrations, and long-term delivery pods.', features: ['Dedicated cross-functional squad', 'Custom roadmap and governance', 'Monthly strategic reviews', 'Priority SLA support'], popular: false },
+];
+
+const projects = [
+  { num: '01', category: 'Web Platform', title: 'Moqah.pk', result: 'Event discovery and ticketing — streamlined organizer workflows by 60%.' },
+  { num: '02', category: 'SaaS Product', title: 'Karvaan', result: 'SaaS for tour agencies — operations management with real-time analytics.' },
+  { num: '03', category: 'Mobile App', title: 'SmartScout', result: 'Connecting football players and scouts — real-time notifications and tracking.' },
+];
+
+/* ───── Team Accordion Component ───── */
+function TeamAccordion() {
+  const [hovered, setHovered] = useState<number | null>(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <div className="relative">
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-mesh" />
-        <div className="absolute inset-0 bg-glow-top" />
+    <motion.div
+      ref={ref}
+      className="flex flex-col md:flex-row gap-0 w-full overflow-hidden"
+      style={{ minHeight: '500px' }}
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : {}}
+      transition={{ duration: 0.8 }}
+    >
+      {team.map((member, i) => {
+        const isActive = hovered === i;
+        const isAnyHovered = hovered !== null;
 
-        {/* Animated orbs */}
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary-500/20 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent-500/15 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
-
-        {/* Grid overlay */}
-        <div className="absolute inset-0 bg-grid opacity-30" />
-
-        <div className="relative z-10 container-lg text-center py-20">
-          {/* Badge */}
+        return (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8"
+            key={member.name}
+            className="relative cursor-pointer overflow-hidden"
+            onMouseEnter={() => setHovered(i)}
+            onMouseLeave={() => setHovered(null)}
+            animate={{
+              flex: isActive ? 3 : isAnyHovered ? 0.8 : 1,
+            }}
+            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{
+              backgroundColor: isActive ? member.bg : '#111',
+              minHeight: '500px',
+            }}
           >
-            <Sparkles size={14} className="text-primary-400" />
-            <span className="text-sm text-white/70">AI-Powered Software Solutions</span>
-          </motion.div>
+            {/* Content */}
+            <div className="relative z-10 h-full flex flex-col justify-between p-8 md:p-10">
+              {/* Top: Role */}
+              <div>
+                <motion.span
+                  className="text-xs uppercase tracking-[0.15em] font-medium"
+                  animate={{ color: isActive ? '#000' : '#888' }}
+                  transition={{ duration: 0.4 }}
+                >
+                  {member.role}
+                </motion.span>
+              </div>
 
-          {/* Main Heading */}
+              {/* Center: Name + Bio */}
+              <div className="flex-1 flex flex-col justify-center py-8">
+                <motion.h3
+                  className="font-bold leading-none mb-4"
+                  animate={{
+                    fontSize: isActive ? 'clamp(2.5rem, 5vw, 4rem)' : 'clamp(1.5rem, 3vw, 2rem)',
+                    color: isActive ? '#000' : '#fff',
+                  }}
+                  transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  style={{ fontStyle: 'italic', letterSpacing: '-0.02em' }}
+                >
+                  {member.name}
+                </motion.h3>
+
+                <motion.p
+                  className="text-sm leading-relaxed max-w-sm"
+                  animate={{
+                    opacity: isActive ? 1 : 0,
+                    y: isActive ? 0 : 10,
+                    color: isActive ? '#000' : '#888',
+                  }}
+                  transition={{ duration: 0.4, delay: isActive ? 0.15 : 0 }}
+                >
+                  {member.bio}
+                </motion.p>
+              </div>
+
+              {/* Bottom: Visit Portfolio */}
+              <motion.div
+                animate={{
+                  opacity: isActive ? 1 : 0.6,
+                }}
+                transition={{ duration: 0.4 }}
+              >
+                <span
+                  className="text-sm font-medium"
+                  style={{ color: isActive ? '#000' : '#666' }}
+                >
+                  Visit Portfolio →
+                </span>
+              </motion.div>
+            </div>
+
+            {/* Large initials watermark */}
+            <motion.div
+              className="absolute top-1/2 right-4 -translate-y-1/2 font-black select-none pointer-events-none"
+              animate={{
+                fontSize: isActive ? '12rem' : '6rem',
+                opacity: isActive ? 0.08 : 0.03,
+                color: isActive ? '#000' : '#fff',
+              }}
+              transition={{ duration: 0.6 }}
+              style={{ lineHeight: 1 }}
+            >
+              {member.initials}
+            </motion.div>
+          </motion.div>
+        );
+      })}
+    </motion.div>
+  );
+}
+
+/* ───── Main Component ───── */
+export default function Home() {
+  const heroRef = useRef(null);
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const heroOpacity = useTransform(heroScroll, [0, 1], [1, 0]);
+  const heroScale = useTransform(heroScroll, [0, 1], [1, 0.95]);
+  const heroY = useTransform(heroScroll, [0, 1], [0, 100]);
+
+  return (
+    <div>
+      {/* ═══════ HERO ═══════ */}
+      <section ref={heroRef} id="hero" className="relative h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+        <motion.div
+          style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
+          className="relative z-10"
+        >
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
-            initial={{ opacity: 0, y: 20 }}
+            className="hero-heading text-white mb-6"
+            initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <span className="text-gradient animate-gradient-x">AI-Powered Software</span>
-            <br />
-            <span className="text-white">for a Faster Tomorrow</span>
+            Art Meets<br />Technology
           </motion.h1>
 
-          {/* Subheading */}
-          <motion.p
-            className="text-lg md:text-xl text-white/60 mb-10 max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Powered by TechHubble and Khiviom — building intelligent products,
-            automation systems, and high-performance software.
-          </motion.p>
-
-          {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <Link to="/contact">
-              <motion.button
-                className="btn-primary inline-flex items-center gap-2"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span>Work With Us</span>
-                <ArrowRight size={18} />
-              </motion.button>
-            </Link>
-            <Link to="/portfolio">
-              <motion.button
-                className="btn-secondary inline-flex items-center gap-2"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span>See Portfolio</span>
-              </motion.button>
+            <Link to="/#services" className="link-arrow text-base mt-4 inline-flex">
+              Enter Experience ↓
             </Link>
           </motion.div>
-        </div>
+        </motion.div>
 
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
+        {/* Decorative background text (parallax) */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+          style={{ opacity: useTransform(heroScroll, [0, 0.5], [0.03, 0]) }}
+        >
+          <span className="text-[20vw] font-black text-white leading-none tracking-tighter">
+            HUSAKA
+          </span>
+        </motion.div>
+
+        {/* Scroll prompt */}
+        <motion.div
+          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+        >
+          <span className="scroll-prompt">Scroll ↓</span>
+        </motion.div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="section relative">
-        <div className="container-lg">
-          <motion.div
-            className="section-header"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="section-title">
-              Why Choose <span className="text-gradient">Us</span>
+      {/* ═══════ SERVICES (01) ═══════ */}
+      <section id="services" className="section">
+        <div className="container">
+          <FadeIn>
+            <div className="flex items-baseline gap-3 mb-4">
+              <span className="section-number">01</span>
+              <span className="section-label">Digital Solutions</span>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <h2 className="heading-lg text-white mb-12 max-w-2xl">
+              <TextReveal text="We design and build digital products that drive measurable growth." />
             </h2>
-            <p className="section-subtitle">
-              We combine technical excellence with creative problem-solving
-            </p>
-          </motion.div>
+          </FadeIn>
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {features.map((feature, i) => {
-              const Icon = feature.icon;
-              return (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {services.map((s, i) => (
+              <FadeIn key={s.num} delay={i * 0.12}>
                 <motion.div
-                  key={i}
-                  variants={itemVariants}
-                  className="group card card-hover"
+                  className="card card-service group h-full"
+                  whileHover={{ y: -6, borderColor: '#f5c518' }}
+                  transition={{ duration: 0.3 }}
                 >
-                  {/* Icon container */}
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className={`w-6 h-6 ${feature.iconColor}`} />
+                  <div className="flex justify-between items-start mb-8">
+                    <span className="section-number italic">{s.num}</span>
+                    <motion.span
+                      className="arrow-icon text-muted text-lg"
+                      whileHover={{ rotate: 45 }}
+                    >
+                      ↗
+                    </motion.span>
                   </div>
-
-                  <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-primary-400 transition-colors duration-300">
-                    {feature.title}
-                  </h3>
-                  <p className="text-white/50 text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
+                  <h3 className="heading-md text-white mb-6">{s.title}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {s.tags.map((tag, ti) => (
+                      <span key={tag} className="text-xs text-muted">
+                        {tag}{ti < s.tags.length - 1 && <span className="ml-2">·</span>}
+                      </span>
+                    ))}
+                  </div>
                 </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Mission & Vision Section */}
-      <section className="section relative">
-        {/* Background accent */}
-        <div className="absolute inset-0 bg-glow-center" />
-
-        <div className="relative container-lg">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <motion.div
-              className="card card-glass p-8 md:p-10"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="w-12 h-12 rounded-xl bg-primary-500/10 flex items-center justify-center mb-6">
-                <div className="w-3 h-3 rounded-full bg-primary-400" />
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Our Mission</h3>
-              <p className="text-white/60 text-lg leading-relaxed">
-                To provide the latest technology solutions to our customers at the fastest pace possible.
-                We're committed to helping fast-growing companies ship faster and scale efficiently.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="card card-glass p-8 md:p-10"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <div className="w-12 h-12 rounded-xl bg-accent-500/10 flex items-center justify-center mb-6">
-                <div className="w-3 h-3 rounded-full bg-accent-400" />
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Our Vision</h3>
-              <p className="text-white/60 text-lg leading-relaxed">
-                To empower startups and businesses with cutting-edge products, including AI-driven insights,
-                to succeed in a fast-paced global market. Building the future, one intelligent solution at a time.
-              </p>
-            </motion.div>
+              </FadeIn>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Projects Section */}
-      <section className="section relative">
-        <div className="container-lg">
-          <motion.div
-            className="section-header"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="section-title">
-              Featured <span className="text-gradient">Projects</span>
-            </h2>
-            <p className="section-subtitle">
-              Showcasing our latest work in AI, automation, and software development
-            </p>
-          </motion.div>
+      <div className="container"><div className="section-divider" /></div>
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {projects.map((project, i) => (
-              <motion.div
-                key={i}
-                variants={itemVariants}
-                className="group card card-hover p-8"
-              >
-                {/* Gradient background on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300`} />
+      {/* ═══════ TEAM (01) ═══════ */}
+      <section id="team" className="section">
+        <div className="container">
+          <FadeIn>
+            <div className="flex items-baseline gap-3 mb-12">
+              <span className="section-number">01</span>
+              <span className="section-label">Meet the team</span>
+            </div>
+          </FadeIn>
+        </div>
 
-                <div className="relative z-10">
-                  {/* Category badge */}
-                  <div className="mb-5">
-                    <span className="badge">{project.category}</span>
-                  </div>
+        {/* Full-width team accordion */}
+        <TeamAccordion />
 
-                  <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-primary-400 transition-colors duration-300">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-white/50 text-sm mb-5 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <Link to="/portfolio">
-              <motion.button
-                className="btn-primary inline-flex items-center gap-2"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span>View All Projects</span>
-                <ArrowRight size={18} />
-              </motion.button>
-            </Link>
-          </motion.div>
+        <div className="container">
+          {/* Stats row */}
+          <FadeIn>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-12 border-t border-[#1a1a1a]">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                >
+                  <div className="stat-number text-white mb-2">{stat.value}</div>
+                  <span className="text-xs text-muted uppercase tracking-wider">{stat.label}</span>
+                </motion.div>
+              ))}
+            </div>
+          </FadeIn>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section relative">
-        <div className="absolute inset-0 bg-mesh opacity-50" />
+      <div className="container"><div className="section-divider" /></div>
 
-        <div className="relative container-md">
-          <motion.div
-            className="card card-glass p-10 md:p-16 text-center gradient-border"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Build Something{' '}
-              <span className="text-gradient">Amazing</span>?
+      {/* ═══════ PROCESS (02) ═══════ */}
+      <section id="process" className="section">
+        <div className="container">
+          <FadeIn>
+            <div className="flex items-baseline gap-3 mb-4">
+              <span className="section-number">02</span>
+              <span className="section-label">How we execute</span>
+            </div>
+          </FadeIn>
+
+          <ParallaxText className="mb-16">
+            <h2 className="heading-lg text-white max-w-2xl">
+              <TextReveal text="From first call to live product in weeks, not months." />
             </h2>
-            <p className="text-white/60 text-lg mb-8 max-w-lg mx-auto">
-              Let's discuss how we can help your business scale with intelligent technology solutions.
-            </p>
-            <Link to="/contact">
-              <motion.button
-                className="btn-primary inline-flex items-center gap-2"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span>Start Your Project</span>
-                <ArrowRight size={18} />
-              </motion.button>
-            </Link>
-          </motion.div>
+          </ParallaxText>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            {processSteps.map((step, i) => (
+              <FadeIn key={step.title} delay={i * 0.12}>
+                <motion.div
+                  whileHover={{ x: 6 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="step-number mb-4">{String(i + 1).padStart(2, '0')}</div>
+                  <h4 className="heading-sm text-white mb-3">{step.title}</h4>
+                  <p className="body-text text-sm">{step.desc}</p>
+                </motion.div>
+              </FadeIn>
+            ))}
+          </div>
+
+          {/* Testimonial */}
+          <FadeIn>
+            <div className="mt-20 pt-12 border-t border-[#1a1a1a]">
+              <div className="max-w-3xl">
+                <motion.div
+                  className="text-6xl text-[#222] font-serif mb-4 leading-none"
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
+                  "
+                </motion.div>
+                <p className="testimonial-quote mb-8">
+                  HuSaKa delivered our new client portal in{' '}
+                  <span className="testimonial-highlight">18 days</span>. Our team now handles
+                  twice the volume with less manual work and far better customer experience.
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="avatar-initials bg-[#333] text-white text-sm">NA</div>
+                  <div>
+                    <p className="text-sm font-semibold text-white">Nadia Ali</p>
+                    <p className="text-xs text-muted">Founder, Craftline Co.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <div className="container"><div className="section-divider" /></div>
+
+      {/* ═══════ WHY CHOOSE US (03) ═══════ */}
+      <section id="why" className="section">
+        <div className="container">
+          <FadeIn>
+            <div className="flex items-baseline gap-3 mb-4">
+              <span className="section-number">03</span>
+              <span className="section-label">Why choose us</span>
+            </div>
+          </FadeIn>
+
+          <ParallaxText className="mb-16">
+            <h2 className="heading-lg text-white max-w-xl">
+              <TextReveal text="Built for ambitious teams who ship fast." />
+            </h2>
+          </ParallaxText>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+            {whyUs.map((item, i) => (
+              <FadeIn key={item.num} delay={i * 0.1}>
+                <motion.div
+                  className="flex gap-5 group cursor-default"
+                  whileHover={{ x: 8 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <span className="text-sm font-bold text-accent shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    {item.num}
+                  </span>
+                  <div>
+                    <h4 className="heading-sm text-white mb-2 group-hover:text-accent transition-colors duration-300">{item.title}</h4>
+                    <p className="body-text text-sm">{item.desc}</p>
+                  </div>
+                </motion.div>
+              </FadeIn>
+            ))}
+          </div>
+
+          {/* Second testimonial */}
+          <FadeIn>
+            <div className="mt-20 pt-12 border-t border-[#1a1a1a]">
+              <div className="max-w-3xl">
+                <div className="stars mb-4">★★★★★</div>
+                <p className="testimonial-quote mb-8">
+                  "The team turned our messy operations into one smooth digital flow. We saved hours daily in the first month alone."
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="avatar-initials bg-accent text-black text-sm font-bold">FH</div>
+                  <div>
+                    <p className="text-sm font-semibold text-white">Faraz Hussain</p>
+                    <p className="text-xs text-muted">Operations Lead, Northline Group</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <div className="container"><div className="section-divider" /></div>
+
+      {/* ═══════ PRICING (04) ═══════ */}
+      <section id="pricing" className="section">
+        <div className="container">
+          <FadeIn>
+            <div className="flex items-baseline gap-3 mb-4">
+              <span className="section-number">04</span>
+              <span className="section-label">Engagement plans</span>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <h2 className="heading-lg text-white mb-16 max-w-xl">
+              <TextReveal text="Transparent pricing. No surprises." />
+            </h2>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {pricing.map((plan, i) => (
+              <FadeIn key={plan.name} delay={i * 0.12}>
+                <motion.div
+                  className={`pricing-card h-full ${plan.popular ? 'popular' : ''}`}
+                  whileHover={{ y: -8, borderColor: plan.popular ? '#f5c518' : '#333' }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <h4 className="heading-sm text-white">{plan.name}</h4>
+                    {plan.popular && <span className="badge">Most Popular</span>}
+                  </div>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-white">{plan.price}</span>
+                    <span className="text-sm text-muted ml-1">{plan.unit}</span>
+                  </div>
+                  <p className="body-text text-sm mb-8">{plan.desc}</p>
+                  <ul className="space-y-3 mb-8 flex-1">
+                    {plan.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-sm text-muted">
+                        <span className="text-accent mt-0.5">—</span><span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link to="/contact">
+                    <button className={plan.popular ? 'btn-primary w-full justify-center' : 'btn-outline w-full justify-center'}>
+                      Get Started
+                    </button>
+                  </Link>
+                </motion.div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="container"><div className="section-divider" /></div>
+
+      {/* ═══════ PROJECTS (05) ═══════ */}
+      <section id="projects" className="section">
+        <div className="container">
+          <FadeIn>
+            <div className="flex items-baseline gap-3 mb-4">
+              <span className="section-number">05</span>
+              <span className="section-label">Selected work</span>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <h2 className="heading-lg text-white mb-16 max-w-xl">
+              <TextReveal text="Real results for real businesses." />
+            </h2>
+          </FadeIn>
+
+          <div>
+            {projects.map((project, i) => (
+              <FadeIn key={project.num} delay={i * 0.12}>
+                <motion.div
+                  whileHover={{ x: 12 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Link to="/portfolio" className="project-entry group block">
+                    <span className="section-number shrink-0">{project.num}</span>
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs text-muted uppercase tracking-wider">{project.category}</span>
+                      <h4 className="heading-md text-white group-hover:text-accent transition-colors duration-200 mt-1">
+                        {project.title}
+                      </h4>
+                      <p className="body-text text-sm mt-2">{project.result}</p>
+                    </div>
+                    <motion.span
+                      className="text-muted text-lg shrink-0 group-hover:text-accent transition-colors"
+                      whileHover={{ rotate: 45 }}
+                    >
+                      ↗
+                    </motion.span>
+                  </Link>
+                </motion.div>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn>
+            <div className="mt-12">
+              <Link to="/portfolio" className="link-arrow text-base">
+                View All Projects →
+              </Link>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <div className="container"><div className="section-divider" /></div>
+
+      {/* ═══════ CTA / CONTACT ═══════ */}
+      <section id="contact" className="section">
+        <div className="container">
+          <div className="max-w-2xl">
+            <FadeIn>
+              <h2 className="heading-lg text-white mb-4" style={{ fontStyle: 'italic' }}>
+                <TextReveal text="Ready to Launch Something Better?" />
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="body-text mb-10">
+                Book a free 30-minute product call and leave with a clear execution plan.
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.3}>
+              <div className="flex flex-col sm:flex-row gap-6 items-start">
+                <Link to="/contact">
+                  <motion.span
+                    className="link-arrow text-base text-white hover:text-accent"
+                    whileHover={{ x: 6 }}
+                  >
+                    Book a Strategy Call →
+                  </motion.span>
+                </Link>
+                <a href="mailto:contact@husaka.com">
+                  <motion.span className="link-arrow text-base" whileHover={{ x: 6 }}>
+                    contact@husaka.com
+                  </motion.span>
+                </a>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
     </div>

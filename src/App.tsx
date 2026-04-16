@@ -17,7 +17,7 @@ function App() {
     <Router>
       <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
         <Header />
-        <main className="pt-16">
+        <main>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
