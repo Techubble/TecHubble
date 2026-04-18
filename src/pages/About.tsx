@@ -27,7 +27,7 @@ function TextReveal({ text, className = '', delay = 0 }: { text: string; classNa
 }
 
 const founders = [
-  { name: 'Sami', role: 'Co-Founder & Lead Strategist', bio: 'Visionary leader driving innovation and client success through cutting-edge technology solutions.', expertise: ['Product Strategy', 'Client Relations', 'Innovation'], initials: 'SA', color: '#f5c518', bg: '#f5c518' },
+  { name: 'Sami', role: 'AI and Data Engineer', bio: 'Visionary leader driving innovation and client success through cutting-edge technology solutions.', expertise: ['Product Strategy', 'Client Relations', 'Innovation'], initials: 'SA', color: '#f5c518', bg: '#f5c518' },
   { name: 'Kazim', role: 'Co-Founder & Full-Stack Developer', bio: 'Expert full-stack developer with deep expertise in building scalable applications and leading technical teams.', expertise: ['Full-Stack Development', 'System Architecture', 'Cloud Infrastructure'], initials: 'KA', color: '#888', bg: '#d4d4d4' },
   { name: 'Huzaifa', role: 'Co-Founder & Business Management', bio: 'Strategic business leader driving operational excellence and ensuring sustainable growth across all ventures.', expertise: ['Business Strategy', 'Operations Management', 'Growth Planning'], initials: 'HU', color: '#f5c518', bg: '#f5c518' },
   { name: 'Omer', role: 'Co-Founder & Developer', bio: 'Skilled developer crafting robust and efficient software solutions with a passion for clean, maintainable code.', expertise: ['Software Development', 'Web Applications', 'API Design'], initials: 'OM', color: '#888', bg: '#d4d4d4' },
