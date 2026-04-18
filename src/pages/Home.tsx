@@ -63,7 +63,8 @@ const services = [
 const team = [
   { role: 'Product', name: 'Sami', bio: 'Turns business ideas into clear product roadmaps and fast execution plans', initials: 'SA', color: '#f5c518', bg: '#f5c518' },
   { role: 'Full-Stack', name: 'Kazim', bio: 'Builds scalable applications and leads technical architecture end-to-end', initials: 'KA', color: '#888', bg: '#d4d4d4' },
-  { role: 'AI & ML', name: 'Huzaifa', bio: 'Builds intelligent systems that automate workflows and amplify human potential', initials: 'HU', color: '#f5c518', bg: '#f5c518' },
+  { role: 'Business Management', name: 'Huzaifa', bio: 'Drives operational excellence and strategic growth across all business verticals', initials: 'HU', color: '#f5c518', bg: '#f5c518' },
+  { role: 'Developer', name: 'Omer', bio: 'Crafts robust software solutions with a passion for clean code and seamless user experiences', initials: 'OM', color: '#888', bg: '#d4d4d4' },
 ];
 
 const stats = [
@@ -87,11 +88,7 @@ const whyUs = [
   { num: '04', title: 'Long-term technical partner', desc: 'From roadmap to rollout, we stay with you to improve, optimize, and expand.' },
 ];
 
-const pricing = [
-  { name: 'Launch', price: '$1,200', unit: '/project', desc: 'Ideal for validating one high-impact feature quickly.', features: ['One focused feature', '10-day delivery sprint', 'Two feedback rounds', '30-day stabilization support'], popular: false },
-  { name: 'Scale', price: '$3,800', unit: '/project', desc: 'Complete product build with workflow automation and analytics.', features: ['Core product architecture', 'Automation workflows included', '4 to 6 week delivery', 'Weekly sprint demos', '90-day growth support'], popular: true },
-  { name: 'Enterprise', price: 'Custom', unit: 'Scope', desc: 'For multi-team products, complex migrations, and long-term delivery pods.', features: ['Dedicated cross-functional squad', 'Custom roadmap and governance', 'Monthly strategic reviews', 'Priority SLA support'], popular: false },
-];
+
 
 const projects = [
   { num: '01', category: 'Web Platform', title: 'Moqah.pk', result: 'Event discovery and ticketing — streamlined organizer workflows by 60%.' },
@@ -485,49 +482,44 @@ export default function Home() {
           <FadeIn>
             <div className="flex items-baseline gap-3 mb-4">
               <span className="section-number">04</span>
-              <span className="section-label">Engagement plans</span>
+              <span className="section-label">Pricing</span>
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.1}>
-            <h2 className="heading-lg text-white mb-16 max-w-xl">
-              <TextReveal text="Transparent pricing. No surprises." />
+          <ParallaxText className="mb-12">
+            <h2 className="heading-lg text-white max-w-2xl">
+              <TextReveal text="Get in touch for custom pricing tailored to your project." />
             </h2>
-          </FadeIn>
+          </ParallaxText>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {pricing.map((plan, i) => (
-              <FadeIn key={plan.name} delay={i * 0.12}>
-                <motion.div
-                  className={`pricing-card h-full ${plan.popular ? 'popular' : ''}`}
-                  whileHover={{ y: -8, borderColor: plan.popular ? '#f5c518' : '#333' }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <h4 className="heading-sm text-white">{plan.name}</h4>
-                    {plan.popular && <span className="badge">Most Popular</span>}
-                  </div>
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-white">{plan.price}</span>
-                    <span className="text-sm text-muted ml-1">{plan.unit}</span>
-                  </div>
-                  <p className="body-text text-sm mb-8">{plan.desc}</p>
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-sm text-muted">
-                        <span className="text-accent mt-0.5">—</span><span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to="/contact">
-                    <button className={plan.popular ? 'btn-primary w-full justify-center' : 'btn-outline w-full justify-center'}>
-                      Get Started
-                    </button>
-                  </Link>
-                </motion.div>
-              </FadeIn>
-            ))}
-          </div>
+          <FadeIn delay={0.2}>
+            <motion.div
+              className="card"
+              style={{ borderColor: '#1a1a1a', padding: '3rem' }}
+              whileHover={{ borderColor: '#f5c518', y: -4 }}
+              transition={{ duration: 0.3 }}
+            >
+              <p className="body-text text-lg mb-8 max-w-xl">
+                Every project is unique. Contact us to discuss your requirements and receive a transparent, no-obligation quote.
+              </p>
+              <div className="flex flex-col sm:flex-row items-start gap-6">
+                <a href="tel:03335752043" className="flex items-center gap-3 group">
+                  <span className="text-accent text-xl">✆</span>
+                  <span className="text-2xl font-bold text-white group-hover:text-accent transition-colors duration-300" style={{ letterSpacing: '0.04em' }}>
+                    0333-575-2043
+                  </span>
+                </a>
+                <Link to="/contact">
+                  <motion.span
+                    className="link-arrow text-base text-white hover:text-accent"
+                    whileHover={{ x: 6 }}
+                  >
+                    Or send us a message →
+                  </motion.span>
+                </Link>
+              </div>
+            </motion.div>
+          </FadeIn>
         </div>
       </section>
 
