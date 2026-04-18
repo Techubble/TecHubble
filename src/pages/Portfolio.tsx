@@ -32,9 +32,9 @@ export default function Portfolio() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const projects = [
-    { id: 1, title: 'Moqah.pk', description: 'Event discovery and ticketing platform allowing organizers to list events and customers to purchase tickets seamlessly.', category: 'web-mobile', technologies: ['Web App', 'Payment', 'Event Management'], year: 2022 },
-    { id: 2, title: 'Karvaan', description: 'SaaS platform for tour agencies managing operations, streamlining workflows, and improving operational efficiency.', category: 'web-mobile', technologies: ['Desktop App', 'SaaS', 'Operations'], year: 2022 },
-    { id: 3, title: 'SmartScout', description: 'Mobile app connecting football players and scouts with real-time notifications and activity tracking.', category: 'web-mobile', technologies: ['React Native', 'Mobile', 'Sports Tech'], year: 2022 },
+    { id: 1, title: 'Moqah.pk', description: 'Event discovery and ticketing platform allowing organizers to list events and customers to purchase tickets seamlessly.', category: 'web-mobile', technologies: ['Web App', 'Payment', 'Event Management'], year: 2022, image: '/images/moqah.jpeg' },
+    { id: 2, title: 'Karvaan', description: 'SaaS platform for tour agencies managing operations, streamlining workflows, and improving operational efficiency.', category: 'web-mobile', technologies: ['Desktop App', 'SaaS', 'Operations'], year: 2022, image: '/images/karvaan.jpeg' },
+    { id: 3, title: 'SmartScout', description: 'Mobile app connecting football players and scouts with real-time notifications and activity tracking.', category: 'web-mobile', technologies: ['React Native', 'Mobile', 'Sports Tech'], year: 2022, image: '/images/smartscout.jpeg' },
     { id: 4, title: 'CNN-BiLSTM Intrusion Detection', description: 'Advanced intrusion detection using CNN-BiLSTM with attention mechanisms and QNN classifier.', category: 'ai-ml', technologies: ['TensorFlow', 'CNN', 'LSTM', 'Deep Learning'], year: 2023 },
     { id: 5, title: 'QNN Binary Classifier', description: 'Quantum neural network binary classifier using Qiskit and PyTorch on 11GB dataset.', category: 'ai-ml', technologies: ['Qiskit', 'PyTorch', 'Quantum Computing'], year: 2023 },
     { id: 6, title: 'ESP32-CAM Distributed LLM', description: 'Layer-splitting architecture distributing LLM inference across multiple ESP32 devices.', category: 'robotics', technologies: ['ESP32', 'LLM', 'Edge Computing'], year: 2024 },
@@ -177,6 +177,20 @@ export default function Portfolio() {
                         ))}
                       </div>
                     </div>
+                    {'image' in project && project.image && (
+                      <motion.div
+                        className="shrink-0 overflow-hidden rounded-sm border border-[#1a1a1a]"
+                        style={{ width: '80px', height: '56px' }}
+                        whileHover={{ scale: 1.08 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <img
+                          src={(project as typeof project & { image: string }).image}
+                          alt={project.title}
+                          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                        />
+                      </motion.div>
+                    )}
                     <motion.span
                       className="text-muted text-lg group-hover:text-accent transition-colors shrink-0"
                       whileHover={{ rotate: 45 }}
