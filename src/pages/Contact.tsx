@@ -189,8 +189,8 @@ export default function Contact() {
             {/* Contact Info */}
             <div className="space-y-8">
               {[
-                { label: 'Email', content: 'contact@husaka.com', href: 'mailto:contact@husaka.com' },
-                { label: 'WhatsApp', content: 'Chat with us →', href: 'https://wa.me/1234567890' },
+                { label: 'Email', content: 'contact@techubble.com', href: 'mailto:contact@techubble.com' },
+                { label: 'WhatsApp', content: 'Chat with us →', href: 'https://wa.me/923335752043' },
               ].map((item, i) => (
                 <FadeIn key={item.label} delay={0.15 + i * 0.1}>
                   <div>
@@ -218,11 +218,18 @@ export default function Contact() {
               <FadeIn delay={0.45}>
                 <div className="border-t border-[#1a1a1a] pt-8">
                   <span className="section-label block mb-4">Connect with the team</span>
-                  <div className="flex gap-3">
-                    {['Sami', 'Kazim', 'Huzaifa'].map((name, i) => (
+                  <div className="flex flex-wrap gap-3">
+                    {[
+                      { name: 'Sami', url: 'https://www.linkedin.com/in/-abdul-sami-khan/' },
+                      { name: 'Kazim', url: 'https://www.linkedin.com/in/mirza-kazim-husain-/' },
+                      { name: 'Omer', url: 'https://www.linkedin.com/in/mohammad-omer-aamir/' },
+                      { name: 'Huzaifa', url: 'https://www.linkedin.com/in/huzaifa-qureshi-513471245/' },
+                    ].map((member, i) => (
                       <motion.a
-                        key={name}
-                        href={`https://linkedin.com/in/${name.toLowerCase()}`}
+                        key={member.name}
+                        href={member.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="px-4 py-2 text-sm text-muted border border-[#1a1a1a] hover:border-accent hover:text-accent transition-colors duration-200"
                         whileHover={{ y: -3 }}
                         initial={{ opacity: 0, y: 10 }}
@@ -230,7 +237,7 @@ export default function Contact() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.5 + i * 0.1 }}
                       >
-                        {name}
+                        {member.name}
                       </motion.a>
                     ))}
                   </div>

@@ -251,7 +251,7 @@ export default function Home() {
           style={{ opacity: useTransform(heroScroll, [0, 0.5], [0.03, 0]) }}
         >
           <span className="text-[20vw] font-black text-white leading-none tracking-tighter">
-            HUSAKA
+            TECHUBBLE
           </span>
         </motion.div>
 
@@ -398,7 +398,7 @@ export default function Home() {
                   "
                 </motion.div>
                 <p className="testimonial-quote mb-8">
-                  HuSaKa delivered our new client portal in{' '}
+                  Techubble delivered our new client portal in{' '}
                   <span className="testimonial-highlight">18 days</span>. Our team now handles
                   twice the volume with less manual work and far better customer experience.
                 </p>
@@ -605,9 +605,9 @@ export default function Home() {
                     Book a Strategy Call →
                   </motion.span>
                 </Link>
-                <a href="mailto:contact@husaka.com">
+                <a href="mailto:contact@techubble.com">
                   <motion.span className="link-arrow text-base" whileHover={{ x: 6 }}>
-                    contact@husaka.com
+                    contact@techubble.com
                   </motion.span>
                 </a>
               </div>

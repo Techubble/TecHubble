@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Logo */}
           <Link to="/" className="text-xl font-bold tracking-tight text-white">
-            Hu<span className="text-accent">Sa</span>Ka
+            Tec<span className="text-accent">hub</span>ble
           </Link>
 
           {/* Nav Links */}
@@ -35,7 +35,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-sm text-dim">
-            © {currentYear} HuSaKa. Built for ambitious businesses.
+            © {currentYear} Techubble. Built for ambitious businesses.
           </p>
         </div>
       </div>

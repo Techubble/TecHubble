@@ -160,7 +160,7 @@ export default function About() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <h1 className="hero-heading text-white" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}>
-              <TextReveal text="About HuSaKa" />
+              <TextReveal text="About Techubble" />
             </h1>
           </FadeIn>
           <FadeIn delay={0.4}>

@@ -52,7 +52,7 @@ export default function Header() {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 group">
               <span className="text-xl font-bold tracking-tight text-white">
-                Hu<span className="text-accent">Sa</span>Ka
+                Tec<span className="text-accent">hub</span>ble
               </span>
             </Link>
 
