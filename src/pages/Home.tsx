@@ -182,7 +182,7 @@ function TeamAccordion() {
                   className="text-sm font-medium"
                   style={{ color: isActive ? '#000' : '#666' }}
                 >
-                  LinkedIn →
+                  Visit Portfolio →
                 </a>
               </motion.div>
             </div>

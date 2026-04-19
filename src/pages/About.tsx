@@ -133,7 +133,7 @@ function FounderAccordion() {
                 className="text-sm font-medium"
                 animate={{ opacity: isActive ? 1 : 0.5, color: isActive ? '#000' : '#666' }}
               >
-                LinkedIn →
+                Visit Portfolio →
               </motion.a>
             </div>
 
