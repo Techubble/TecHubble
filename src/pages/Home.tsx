@@ -61,10 +61,10 @@ const services = [
 ];
 
 const team = [
-  { role: 'AI and Data Engineer', name: 'Sami', bio: 'Turns business ideas into clear product roadmaps and fast execution plans', initials: 'SA', color: '#f5c518', bg: '#f5c518' },
-  { role: 'Full-Stack', name: 'Kazim', bio: 'Builds scalable applications and leads technical architecture end-to-end', initials: 'KA', color: '#888', bg: '#d4d4d4' },
-  { role: 'Business Management', name: 'Huzaifa', bio: 'Drives operational excellence and strategic growth across all business verticals', initials: 'HU', color: '#f5c518', bg: '#f5c518' },
-  { role: 'Developer', name: 'Omer', bio: 'Crafts robust software solutions with a passion for clean code and seamless user experiences', initials: 'OM', color: '#888', bg: '#d4d4d4' },
+  { role: 'AI and Data Engineer', name: 'Sami', bio: 'Turns business ideas into clear product roadmaps and fast execution plans', initials: 'SA', color: '#f5c518', bg: '#f5c518', linkedin: 'https://www.linkedin.com/in/-abdul-sami-khan/' },
+  { role: 'Full-Stack', name: 'Kazim', bio: 'Builds scalable applications and leads technical architecture end-to-end', initials: 'KA', color: '#888', bg: '#d4d4d4', linkedin: 'https://www.linkedin.com/in/mirza-kazim-husain-/' },
+  { role: 'Business Management', name: 'Huzaifa', bio: 'Drives operational excellence and strategic growth across all business verticals', initials: 'HU', color: '#f5c518', bg: '#f5c518', linkedin: 'https://www.linkedin.com/in/huzaifa-qureshi-513471245/' },
+  { role: 'Developer', name: 'Omer', bio: 'Crafts robust software solutions with a passion for clean code and seamless user experiences', initials: 'OM', color: '#888', bg: '#d4d4d4', linkedin: 'https://www.linkedin.com/in/mohammad-omer-aamir/' },
 ];
 
 const stats = [
@@ -170,19 +170,20 @@ function TeamAccordion() {
                 </motion.p>
               </div>
 
-              {/* Bottom: Visit Portfolio */}
+              {/* Bottom: LinkedIn */}
               <motion.div
-                animate={{
-                  opacity: isActive ? 1 : 0.6,
-                }}
+                animate={{ opacity: isActive ? 1 : 0.6 }}
                 transition={{ duration: 0.4 }}
               >
-                <span
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm font-medium"
                   style={{ color: isActive ? '#000' : '#666' }}
                 >
-                  Visit Portfolio →
-                </span>
+                  LinkedIn →
+                </a>
               </motion.div>
             </div>
 
