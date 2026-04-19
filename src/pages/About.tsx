@@ -160,13 +160,25 @@ export default function About() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <h1 className="hero-heading text-white" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}>
-              <TextReveal text="About Techubble" />
+              <TextReveal text="About TecHubble" />
             </h1>
           </FadeIn>
           <FadeIn delay={0.4}>
             <p className="body-text mt-6 max-w-xl">
               Building the future with intelligent technology solutions.
             </p>
+          </FadeIn>
+          <FadeIn delay={0.6}>
+            <a
+              href={`${import.meta.env.BASE_URL}incorporation-letter.pdf`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 mt-8 px-5 py-3 border border-[#1a1a1a] text-sm text-muted hover:border-accent hover:text-accent transition-colors duration-200 group"
+            >
+              <span className="text-accent text-base">&#10515;</span>
+              <span>Company Incorporation Certificate</span>
+              <span className="text-xs opacity-60 group-hover:opacity-100 transition-opacity">.pdf</span>
+            </a>
           </FadeIn>
         </div>
       </section>

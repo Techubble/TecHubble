@@ -250,7 +250,7 @@ export default function Home() {
           className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
           style={{ opacity: useTransform(heroScroll, [0, 0.5], [0.03, 0]) }}
         >
-          <span className="text-[20vw] font-black text-white leading-none tracking-tighter">
+          <span className="text-[14vw] font-black text-white leading-none tracking-tighter">
             TECHUBBLE
           </span>
         </motion.div>
@@ -398,7 +398,7 @@ export default function Home() {
                   "
                 </motion.div>
                 <p className="testimonial-quote mb-8">
-                  Techubble delivered our new client portal in{' '}
+                  TecHubble delivered our new client portal in{' '}
                   <span className="testimonial-highlight">18 days</span>. Our team now handles
                   twice the volume with less manual work and far better customer experience.
                 </p>
